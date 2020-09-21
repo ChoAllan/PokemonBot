@@ -34,5 +34,7 @@ async def on_message(message):
     if message.content.lower() == "!play":
         response = "Let's Play Pokemon"
         await message.channel.send(response)
+    elif message.content == 'raise-exception':
+        raise discord.DiscordException
 
 client.run(TOKEN)
