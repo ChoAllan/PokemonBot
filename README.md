@@ -6,6 +6,6 @@ This is a project written in python that takes use of Discord's and PokéDex's A
 
 ## Build Status
 
-## Screenshots
+## API Reference
 
 ## Features
