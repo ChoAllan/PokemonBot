@@ -20,8 +20,24 @@ def test_pokemondb_getSprite():
 
 
 
+# TEST pokemon no.404 is the right pokemon
+def test_pokemondb_getName404():
+    pokedexs = pokedex.Pokedex()
+    pokemon = Pokemon()
+    pokemon1 = pokedexs.get_pokemon_by_number(404)
+    name1 = getName(pokemon1)
+    assert name1 == "Luxio", "name failed"
+def test_pokemondb_getSprite404():
+    pokedexs = pokedex.Pokedex()
+    pokemon = Pokemon()
+    pokemon1 = pokedexs.get_pokemon_by_number(404)
+    sprite = getSprite(pokemon1)
+    assert sprite == "https://cdn.traction.one/pokedex/pokemon/404.png", "sprite failed"
+
+
+
 # TEST pokemon no. 808 is out of bounds
-def test_pokemondb_noName():
+def test_pokemondb_noName404():
     pokedexs = pokedex.Pokedex()
     pokemon = Pokemon()
     try:
