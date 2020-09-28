@@ -7,7 +7,8 @@ from pokemondb import Pokemon
 from pokemondb import *
 from dotenv import load_dotenv
 from discord.ext import commands
-
+from catchCommand import Catch
+from catchCommand import *
 
 pokemon = Pokemon()
 
@@ -25,6 +26,8 @@ DATABASE = os.getenv('DATABASE')
 
 # initalizes bot command as !
 bot = commands.Bot(command_prefix='!')
+# bot.add_cog(Catch(bot, 0))
+
 
 @bot.command(name="play")
 async def play(ctx):
@@ -32,6 +35,7 @@ async def play(ctx):
     name = str(ctx.message.author)
     newName = name.replace("#", '')
     # print(newName)
+    bot.add_cog(Catch(bot, 0, newName))
 
     mydb = mysql.connector.connect(
     host=HOST,
@@ -46,11 +50,12 @@ async def play(ctx):
         await ctx.send(newName + " has arrived!")
     except:
         await ctx.send(newName + " has arrived!")
-
+    
 
 
     # displays pokemon name and sprite
     poke = pokemon.getPokemon()
+    
     
     response = "Let's play Pokemon!\n!Catch pokemon you see."
     name = getName(poke)
@@ -59,6 +64,9 @@ async def play(ctx):
     await ctx.send(response)
     await ctx.send(sprite)
     await ctx.send(names)
+
+
+
 
 # need this so bot can run
 # client.run(TOKEN)

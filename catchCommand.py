@@ -1,26 +1,56 @@
+import os
 import discord
 from discord.ext import commands
 import random
+from dotenv import load_dotenv
+import mysql.connector
 
+
+load_dotenv()
+HOST = os.getenv('HOST')
+USER = os.getenv('USER')
+PASS = os.getenv('PASS')
+DATABASE = os.getenv('DATABASE')
 class Catch(commands.Cog):
-    def __init__(self, bot, number):
+
+
+    def __init__(self, bot, number, name):
         self.bot = bot
         self.number = number
-
-    def coinflip(self):
-        return random.randint(0, 1)
+        self.name = name
 
     @commands.command(name="catch")
     async def catch(self, ctx, *, member: discord.Member = None):
         memmber = member or ctx.author
-        if coinflip() == 0 :
+        self.number = coinflip()
+        print(self.number)
+        if self.number == 0 :
             await ctx.send("Pokemon has been caught")
-        elif coinflip == 1:
+            mydb = mysql.connector.connect(
+            host=HOST,
+            user=USER,
+            password=PASS,
+            database=DATABASE
+            )
+            mycursor = mydb.cursor()
+            try:
+                sql = "INSERT INTO " + self.name + " (name) VALUES (%s)"
+                print(self.name)
+                val = (number)
+                mycursor.execute(sql, val)
+            except:
+                "error"
+        elif self.number == 1:
             await ctx.send("Pokemon has not been caught")
     
 
 def getNo(Catch):
     return catch.number
+
+def coinflip():
+    return random.randint(0, 1)
+
+
 
 
 
