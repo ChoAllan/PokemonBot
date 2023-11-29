@@ -59,9 +59,9 @@ async def play(ctx):
     
     
     response = "Let's play Pokemon!\n!Catch pokemon you see."
-    name = getName(poke)
+    name = poke['name']
     names = "A wild " + name + " has appeared!"
-    sprite = getSprite(poke)
+    sprite = poke['sprites']['back_default']
     await ctx.send(response)
     await ctx.send(sprite)
     await ctx.send(names)
