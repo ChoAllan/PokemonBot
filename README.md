@@ -12,4 +12,8 @@ https://pypi.org/project/pokedex.py/
 
 https://discordpy.readthedocs.io/en/stable/api.html
 
+## Installation
+
+``pip install pokebase``
+
 ## Features
