@@ -11,7 +11,7 @@ class Pokemon:
 
 
         def getPokemon(self):
-                number = random.randrange(0, 808)
+                number = random.randrange(1, 808)
                 pokemon = self.pb.pokemon(number)
                 url = pokemon.url
 
@@ -24,5 +24,3 @@ class Pokemon:
                 data_json = json.loads(response.read()) 
 
                 return data_json
-
-

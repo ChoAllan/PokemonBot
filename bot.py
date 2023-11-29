@@ -29,6 +29,15 @@ intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 # bot.add_cog(Catch(bot, 0))
 
+mydb = mysql.connector.connect(
+    host=HOST,
+    user=USER,
+    password=PASS,
+    database=DATABASE
+    )
+
+mycursor = mydb.cursor()
+
 
 @bot.command(name="play")
 async def play(ctx):
@@ -36,16 +45,8 @@ async def play(ctx):
     name = str(ctx.message.author)
     newName = name.replace("#", '')
     # print(newName)
-    bot.add_cog(Catch(bot, 0, newName))
-
-    mydb = mysql.connector.connect(
-    host=HOST,
-    user=USER,
-    password=PASS,
-    database=DATABASE
-    )
-
-    mycursor = mydb.cursor()
+    await bot.add_cog(Catch(bot, 0, newName))
+    
     try:
         mycursor.execute("CREATE TABLE "+newName+" (name VARCHAR(255))")
         await ctx.send(newName + " has arrived!")
@@ -61,12 +62,31 @@ async def play(ctx):
     response = "Let's play Pokemon!\n!Catch pokemon you see."
     name = poke['name']
     names = "A wild " + name + " has appeared!"
-    sprite = poke['sprites']['back_default']
+    sprite = poke['sprites']['front_default']
     await ctx.send(response)
     await ctx.send(sprite)
     await ctx.send(names)
 
+@bot.command(name="n")
+async def n(ctx):
+    poke = pokemon.getPokemon()
 
+    response = "New Pokemon!"
+    name = poke['name']
+    type  = poke['types'][0]['type']['name']
+    weight = poke['weight']
+    tries = random.randrange(1, 10)
+
+    names = "A wild " + name + " has appeared!"
+    sprite = poke['sprites']['front_default']
+    await ctx.send(response)
+    await ctx.send(sprite)
+    await ctx.send(names)
+
+    sql = "INSERT INTO player1 (name, type, weight, tries) VALUES (%s, %s, %s, %s)"
+    val = (name, type, weight, tries)
+    mycursor.execute(sql, val)
+    mydb.commit()
 
 
 # need this so bot can run

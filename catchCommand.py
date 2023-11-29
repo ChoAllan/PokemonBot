@@ -21,7 +21,7 @@ class Catch(commands.Cog):
 
     @commands.command(name="catch")
     async def catch(self, ctx, *, member: discord.Member = None):
-        memmber = member or ctx.author
+        member = member or ctx.author
         self.number = coinflip()
         print(self.number)
         if self.number == 0 :
@@ -38,15 +38,14 @@ class Catch(commands.Cog):
                 print(self.name)
                 val = (number)
                 mycursor.execute(sql, val)
+
+                mydb.commit()
+
             except:
                 "error"
         elif self.number == 1:
             await ctx.send("Pokemon has not been caught")
     
-
-def getNo(Catch):
-    return catch.number
-
 def coinflip():
     return random.randint(0, 1)
 
