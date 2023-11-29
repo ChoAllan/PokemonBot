@@ -6,4 +6,8 @@ This is a project written in python that takes use of Discord's and PokéDex's A
 
 ## API Reference
 
+https://pypi.org/project/pokedex.py/
+
+https://discordpy.readthedocs.io/en/stable/api.html
+
 ## Features
