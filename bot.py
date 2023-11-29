@@ -25,7 +25,8 @@ PASS = os.getenv('PASS')
 DATABASE = os.getenv('DATABASE')
 
 # initalizes bot command as !
-bot = commands.Bot(command_prefix='!')
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix='!', intents=intents)
 # bot.add_cog(Catch(bot, 0))
 
 
