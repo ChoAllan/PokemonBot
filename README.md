@@ -16,4 +16,6 @@ https://discordpy.readthedocs.io/en/stable/api.html
 
 ``pip install pokebase``
 
+``pip install -U discord.py``
+
 ## Features
