@@ -19,3 +19,4 @@ https://discordpy.readthedocs.io/en/stable/api.html
 ``pip install -U discord.py``
 
 ## Features
+[embed]http://example.com/file.pdf[/embed]
