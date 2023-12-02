@@ -19,4 +19,6 @@ https://discordpy.readthedocs.io/en/stable/api.html
 ``pip install -U discord.py``
 
 ## Features
+
+![alt text](https://github.com/ChoAllan/PokemonBot/blob/master/pokemon-discord-play.png)
 ![alt text](https://github.com/ChoAllan/PokemonBot/blob/master/pokemonpicture.png)
